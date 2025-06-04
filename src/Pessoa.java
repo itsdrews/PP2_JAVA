@@ -32,6 +32,7 @@ public abstract class Pessoa {
         }
         else{
             this.nome = nome;
+            System.out.println("Nome setado com sucesso!");
         }
 
     }
@@ -46,6 +47,7 @@ public abstract class Pessoa {
                 throw new IllegalArgumentException("Idade mínima 18 anos e máxima 80 anos!");
             } else {
                 this.idade = idade;
+                System.out.println("Idade setado com sucesso!");
             }
         } catch (IllegalArgumentException e) {
             System.out.println("Erro: " + e.getMessage());
@@ -61,6 +63,7 @@ public abstract class Pessoa {
         }
         else{
             this.cpf = cpf;
+            System.out.println("CPF setado com sucesso!");
         }
     }
 
@@ -73,6 +76,7 @@ public abstract class Pessoa {
         }
         else{
             this.endereco = endereco;
+            System.out.println("Endereço setado com sucesso!");
         }
     }
     public String getTelefone() {
@@ -84,13 +88,20 @@ public abstract class Pessoa {
         }
         else{
             this.telefone = telefone;
+            System.out.println("Telefone setado com sucesso!");
         }
     }
     public String getEmail() {
         return this.email;
     }
     public void setEmail(String email) {
-        this.email = email;
+        if (!validarEmail(email)) {
+            throw new IllegalArgumentException("Email inválido!!");
+        }else{
+            this.email = email;
+            System.out.println("Email setado com sucesso!");
+        }
+
     }
     public static boolean validarEmail(String email){
 

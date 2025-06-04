@@ -4,10 +4,10 @@ public abstract class Cliente extends Pessoa{
 
     public Cliente(){}
 
-    public Cliente(String nome,int idade, String cpf,String rg,
+    public Cliente(String nome,int idade, String cpf,
                    String endereco,String telefone,String email,
                    String cnh, boolean vip) {
-        super(nome,idade,cpf,rg,endereco,telefone,email);
+        super(nome,idade,cpf,endereco,telefone,email);
         this.vip = vip;
         this.cnh = cnh;
 
