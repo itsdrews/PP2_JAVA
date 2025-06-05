@@ -121,7 +121,7 @@ public abstract class Pessoa {
             return false;
         }else{return true;}
     }
-
+    // todo: Alterar validaçã do  CPF para modelo mais simples.
     public static boolean validarCPF(String cpf) {
         // Remove pontuação
         cpf = cpf.replaceAll("[^\\d]", "");

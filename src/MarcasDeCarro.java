@@ -1,19 +1,24 @@
 public enum MarcasDeCarro {
-    BMW,
-    MERCEDES,
-    CHEVROLET,
-    VOLVO,
-    VOLKSWAGEN,
-    PORSCHE,
-    BYD,
-    GWM,
-    CAOA_CHERY,
-    AUDI,
-    CITROEN,
-    RENAULT,
-    FERRARI,
-    LAMBORGHINI,
-    FIAT,
-    FORD,
-    DODGE,
+    BYD(new String[]{"DOLPHIN","KING"}),
+    CHEVROLET(new String[]{"TRAILBLAZER","TRACKER"}),
+    VOLKSWAGEN(new String[]{"TIGUAN","TCROSS"}),
+    FIAT(new String[]{"PULSE","TORO"});
+
+    private final String[] modelos;
+
+    MarcasDeCarro(String[] modelos) {
+        this.modelos = modelos;
+    }
+    public boolean validarModelo(String modelo) {
+        for (String m : modelos) {
+            if(m.equalsIgnoreCase(modelo)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public String[] getModelos() {
+        return this.modelos;
+    }
+
 }

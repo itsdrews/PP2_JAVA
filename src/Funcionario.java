@@ -27,18 +27,28 @@ public class Funcionario extends Pessoa{
         return this.cargo;
     }
 
-    public void setCargo(String cargo) {
-        try{
-            Cargos atual  = Cargos.valueOf(cargo.toUpperCase().trim());
-
+    public void setCargo(String nomeCargo) {
+       if(validarCargo(nomeCargo)){
+           this.cargo = nomeCargo;
+           System.out.println("Cargo atualizado com sucesso!");
+       }
+       else{
+           System.out.println("Erro ao atualizar cargo!");
+       }
+    }
+    private static boolean validarCargo(String nomeCargo) {
+        try {
+            Cargos cargo = Cargos.valueOf(nomeCargo.toUpperCase());
+            return true;
+        }catch(IllegalArgumentException e) {
+            return false;
         }
-        this.cargo = cargo;
     }
     public double getBonus() {
         return this.bonus;
     }
     public void setBonus() {
-        if(this.cargo == 'GERENTE'){
+        if(this.cargo.equalsIgnoreCase("GERENTE")){
             this.bonus = 15;
         }
         else{
@@ -47,7 +57,7 @@ public class Funcionario extends Pessoa{
     }
     @Override
     public String getInfo(){
-        return "Nome: " + getNome() + "\nIdade: " + getIdade() + "\nCPF: " + getCpf() +"\nCargo: "
+        return "Nome: " + getNome() + "\nIdade: " + getIdade() + "\nCPF: " + getCpf() + "\nCargo: " + getCargo();
 
     }
 }

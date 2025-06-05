@@ -1,24 +1,14 @@
-public abstract class Cliente extends Pessoa{
-    private boolean vip;
+public abstract class Cliente extends Pessoa implements Notificacao{
     private String cnh;
 
     public Cliente(){}
 
     public Cliente(String nome,int idade, String cpf,
                    String endereco,String telefone,String email,
-                   String cnh, boolean vip) {
+                   String cnh) {
         super(nome,idade,cpf,endereco,telefone,email);
-        this.vip = vip;
         this.cnh = cnh;
 
-    }
-
-
-    public boolean isVip() {
-        return this.vip;
-    }
-    public void setVip(boolean vip) {
-        this.vip = vip;
     }
     public String getCnh() {
         return this.cnh;
@@ -37,6 +27,8 @@ public abstract class Cliente extends Pessoa{
            System.out.println("Erro: "+ e.getMessage());
         }
     }
+
+    // #todo ALTERAR VALIDAÇÂO DE CNH PARA FORMA SIMPLES.
     public boolean validarCNH(String cnh) {
         if (!cnh.matches("^\\d{11}$")) return false;
         if (cnh.chars().distinct().count() == 1) return false;
@@ -57,6 +49,11 @@ public abstract class Cliente extends Pessoa{
         long vl2 = (x >= 10) ? 0 : x - dsc;
 
         return cnh.endsWith("" + vl1 + vl2);
+    }
+    @Override
+    public void notificar(String mensagem){
+        System.out.println("Notificação para "+ getNome()+ "CNH: " + getCnh()+ "\n"+mensagem);
+
     }
 
 
