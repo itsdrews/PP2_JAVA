@@ -1,4 +1,4 @@
-public abstract class Cliente extends Pessoa implements Notificacao{
+public class Cliente extends Pessoa implements Notificacao{
     private String cnh;
 
     public Cliente(){}
@@ -56,5 +56,8 @@ public abstract class Cliente extends Pessoa implements Notificacao{
 
     }
 
+    public String getInfo(){
+        return "Cliente: "+getNome()+ "\nCNH: "+getCnh();
+    }
 
 }

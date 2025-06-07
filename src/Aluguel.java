@@ -37,21 +37,27 @@ public class Aluguel {
     public void setCliente(Cliente cli){
         this.cliente = cli;
     }
+
     public Funcionario getFuncionario() {
         return this.funcionario;
     }
+
     public void setFuncionario(Funcionario func){
         this.funcionario = func;
     }
+
     public Date getDataInicio() {
         return this.dataInicio;
     }
+
     public void setDataInicio(Date d){
         this.dataInicio = d;
     }
+
     public Date getDataFim() {
         return this.dataFim;
     }
+
     public void setDataFim(Date d){
         this.dataFim = d;
     }

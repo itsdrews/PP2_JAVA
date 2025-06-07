@@ -1,9 +1,12 @@
-public class Carro {
+public class Carro implements Revisao {
     private String modelo;
     private String marca;
     private String cor;
     private String placa;
     private boolean disponibilidade = true;
+    private double combustivel;
+    private double valorDiaria;
+    private String avarias;
 
 
     public Carro(String modelo, String marca, String cor, String placa) {
@@ -70,5 +73,15 @@ public class Carro {
         }
         public void devolver(){
             this.disponibilidade = true;
+        }
+
+        public void verificarMotor(){
+
+        }
+        public void verificarCombustivel(){
+
+        }
+        public void verificarAvarias(){
+
         }
 }
