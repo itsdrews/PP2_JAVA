@@ -53,7 +53,7 @@ public class Cliente extends Pessoa implements Notificacao{
     }
     @Override
     public void notificar(String mensagem){
-        System.out.println("Notificação para "+ getNome()+ "CNH: " + getCNH()+ "\n"+mensagem);
+        System.out.println("Notificação para "+ getNome()+ " CNH: " + getCNH()+ "\n"+mensagem);
 
     }
 

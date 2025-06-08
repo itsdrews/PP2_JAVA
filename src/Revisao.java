@@ -1,6 +1,6 @@
 public interface Revisao {
-    void verificarMotor();
-    void verificarCombustivel();
-    void verificarAvarias();
+    boolean verificarMotor();
+    boolean verificarCombustivel();
+    boolean verificarAvarias();
 
 }

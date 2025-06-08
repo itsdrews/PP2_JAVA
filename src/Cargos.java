@@ -1,3 +1,4 @@
 public enum Cargos {
-    GERENTE,VENDEDOR
+    GERENTE,
+    VENDEDOR
 }

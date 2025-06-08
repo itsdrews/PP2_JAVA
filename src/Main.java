@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.time.LocalDate;
 public class Main {
 
     public static void main(String[] args) {
@@ -6,39 +6,74 @@ public class Main {
         // Instanciando carro e testando exceções
 
         // Testando a validação de modelo e marca segundo ENUM;
+        System.out.println("Instanciando carro e validando campos: ");
         Carro carro1 = new Carro();
-        carro1.setModelo("X1");
+        carro1.setModelo("X1"); // Erro
         carro1.setModelo("DOLPHIN");
-        carro1.setMarca("APPLE");
+        carro1.setMarca("APPLE"); // Erro
         carro1.setMarca("BYD");
-
         // Setando Cor e Placa;
         carro1.setCor("PRETO");
         carro1.setPlaca("TAD6E00");
+        System.out.println("----------------------------------------------------------------------------------");
 
-        // Criando Cliente e validando dados.
-        // Cliente herda de pessoa todos os atributos com e exceção de CNH;
+
+
+        // Instanciando Cliente e validando dados
+        // Cliente herda de pessoa todos os atributos e métodos com e exceção de CNH;
         Cliente cliente1 = new Cliente();
-        // Nome
+        // Setando Nome
         cliente1.setNome("Jorginho Frello");
-        // CPF
-        cliente1.setCPF("000.000.000-00");
+        // Setando CPF
+        cliente1.setCPF("000.000.000-00"); // Erro
         cliente1.setCPF("781.459.532-00");
-        // Telefone
-        cliente1.setTelefone("0");
+        // Setando Telefone
+        cliente1.setTelefone("0"); // Erro
         cliente1.setTelefone("92994177001");
-        // Idade
-        cliente1.setIdade(2);
+        // Setando Idade
+        cliente1.setIdade(2); // Erro
         cliente1.setIdade(20);
-        // Endereço
-        cliente1.setEndereco("");
+        // Setando Endereço
+        cliente1.setEndereco(""); // Erro
         cliente1.setEndereco("Av. Darcy Vargas,1200");
-        // Email
-        cliente1.setEmail("jorginho.frello.com");
+        // Setando Email
+        cliente1.setEmail("jorginho.frello.com"); // Erro
         cliente1.setEmail("jorginho.frello@email.com");
-        // CNH
-        cliente1.setCNH("000000000");
+        // Setando CNH
+        cliente1.setCNH("000000000"); // Erro
         cliente1.setCNH("07700897575");
+        System.out.println("----------------------------------------------------------------------------------");
+
+
+        // Intanciando Funcionario que herda de pessoa todos os atributos e métodos de Pessoa
+        Funcionario funcionario1 = new Funcionario();
+        // Setando nome
+        funcionario1.setNome("Giorgian de Arrascaeta Bennedetti");
+        // Setando matricula de Funcionario
+        funcionario1.setMatricula(-1); // Erro
+        funcionario1.setMatricula(10);
+        // Setando Cargo
+        funcionario1.setCargo("ATENDENTE"); // Erro
+        funcionario1.setCargo("GERENTE");
+        // Setando Bonus (Automático ligado ao cargo)
+        funcionario1.setBonus();
+        System.out.println("Bônus: "+ funcionario1.getBonus()+ "%");
+        System.out.println("----------------------------------------------------------------------------------");
+
+
+        // Aluguel classe associativa entre Cliente, Carro e Funcionario // Erro
+        Aluguel aluguel = new Aluguel(cliente1,carro1,funcionario1,
+                LocalDate.of(2025,6,8),
+                LocalDate.of(2025,12,12));
+
+        // Ajustando atributos de Carro para ficar disponível e a revisão ser aprovada
+        carro1.addCombustivel(100);
+
+        Aluguel aluguel2 = new Aluguel(cliente1,carro1,funcionario1,
+                LocalDate.of(2025,6,8),
+                LocalDate.of(2025,12,12));
+
+
 
 
     }

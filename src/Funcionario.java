@@ -20,29 +20,50 @@ public class Funcionario extends Pessoa{
     }
 
     public void setMatricula(int matricula) {
-        this.matricula = matricula;
+        try{
+            if(!validarMatricula( matricula )){
+                throw new IllegalArgumentException("Matricula "+matricula +" inválida!");
+            }else {
+                this.matricula = matricula;
+                System.out.println("Matricula: " + matricula + " setado com suceso!");
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println("Erro: "+e.getMessage());
+        }
+
     }
 
+    private static boolean validarMatricula(int matricula){
+        if(matricula < 0 || matricula > 100) {
+            return false;
+        }else{
+            return true;
+        }
+    }
     public String getCargo() {
         return this.cargo;
     }
 
     public void setCargo(String nomeCargo) {
-       if(validarCargo(nomeCargo)){
-           this.cargo = nomeCargo;
-           System.out.println("Cargo atualizado com sucesso!");
-       }
-       else{
-           System.out.println("Erro ao atualizar cargo!");
+       try{
+           if(!validarCargo(nomeCargo)){
+               throw new IllegalArgumentException("Cargo: "+ nomeCargo + " invalido!");
+           }
+           else {
+               this.cargo = nomeCargo;
+               System.out.println("Cargo: " + nomeCargo+ " setado com suceso!");
+           }
+       }catch(IllegalArgumentException e){
+           System.out.println("Erro: "+e.getMessage());
        }
     }
     private static boolean validarCargo(String nomeCargo) {
-        try {
-            Cargos cargo = Cargos.valueOf(nomeCargo.toUpperCase());
-            return true;
-        }catch(IllegalArgumentException e) {
-            return false;
-        }
+       for(Cargos c : Cargos.values()){
+           if(c.name().equalsIgnoreCase(nomeCargo)){
+               return true;
+           }
+       }
+       return false;
     }
     public double getBonus() {
         return this.bonus;
