@@ -12,15 +12,17 @@ public class Main {
         carro1.setModelo("DOLPHIN");
         carro1.setMarca("APPLE"); // Erro
         carro1.setMarca("BYD");
-        // Setando Cor e Placa;
+        // Setando Cor, Placa e Valor da Diária;
         carro1.setCor("PRETO");
         carro1.setPlaca("TAD6E00");
+        carro1.setValorDiaria(280);
         System.out.println("----------------------------------------------------------------------------------");
 
 
 
         // Instanciando Cliente e validando dados
         // Cliente herda de pessoa todos os atributos e métodos com e exceção de CNH;
+        System.out.println("Cliente: ");
         Cliente cliente1 = new Cliente();
         // Setando Nome
         cliente1.setNome("Jorginho Frello");
@@ -46,6 +48,7 @@ public class Main {
 
 
         // Intanciando Funcionario que herda de pessoa todos os atributos e métodos de Pessoa
+        System.out.println("Funcionario: ");
         Funcionario funcionario1 = new Funcionario();
         // Setando nome
         funcionario1.setNome("Giorgian de Arrascaeta Bennedetti");
@@ -57,21 +60,28 @@ public class Main {
         funcionario1.setCargo("GERENTE");
         // Setando Bonus (Automático ligado ao cargo)
         funcionario1.setBonus();
+        funcionario1.setSalario(3500);
         System.out.println("Bônus: "+ funcionario1.getBonus()+ "%");
         System.out.println("----------------------------------------------------------------------------------");
 
 
         // Aluguel classe associativa entre Cliente, Carro e Funcionario // Erro
+        System.out.println("Aluguel: ");
         Aluguel aluguel = new Aluguel(cliente1,carro1,funcionario1,
                 LocalDate.of(2025,6,8),
                 LocalDate.of(2025,12,12));
 
         // Ajustando atributos de Carro para ficar disponível e a revisão ser aprovada
         carro1.addCombustivel(100);
-
+        System.out.println("Aluguel: ");
         Aluguel aluguel2 = new Aluguel(cliente1,carro1,funcionario1,
                 LocalDate.of(2025,6,8),
                 LocalDate.of(2025,12,12));
+        aluguel2.setBonusSalarial(); // Bônus para o trabalhador
+        System.out.println("Salário com bônus de 0.5% para "+ aluguel2.getFuncionario().getNome() + " : R$ " + aluguel2.getBonusSalarial());
+
+        // Encerrando aluguel
+        aluguel2.encerrarAluguel();
 
 
 

@@ -3,6 +3,7 @@ public class Funcionario extends Pessoa{
     private int matricula;
     private String cargo;
     private double bonus;
+    private double salario;
 
 
     public Funcionario(){}
@@ -14,7 +15,30 @@ public class Funcionario extends Pessoa{
         this.matricula = matricula;
         this.cargo = cargo;
     }
+    public double getSalario() {
+        return this.salario;
+    }
+    public void setSalario(double salario) {
+        try{
+            if(!validarSalario(salario)){
+                throw new IllegalArgumentException("Salário: "+ salario + " inválido!");
+            }
+            else{
+                this.salario = salario;
+                System.out.println("Salário: "+ salario + " setado com sucesso!");
+            }
+        }catch(IllegalArgumentException e){
+            System.out.println("Erro: "+ e.getMessage());
+        }
 
+    }
+    private static boolean validarSalario(double salario){
+        if(salario <= 0|| salario >20000){
+            return false;
+        }else{
+            return true;
+        }
+    }
     public int getMatricula() {
         return this.matricula;
     }
@@ -70,10 +94,10 @@ public class Funcionario extends Pessoa{
     }
     public void setBonus() {
         if(this.cargo.equalsIgnoreCase("GERENTE")){
-            this.bonus = 15;
+            this.bonus = 0.5;
         }
         else{
-            this.bonus = 10;
+            this.bonus = 0.25;
         }
     }
     @Override

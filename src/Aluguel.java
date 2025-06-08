@@ -8,6 +8,8 @@ public class Aluguel implements Revisao {
     private Carro carro;
     private LocalDate dataInicio;
     private LocalDate dataFim;
+    private long dias;
+    private double bonusSalarial = 0;
 
     public Aluguel(){}
 
@@ -24,23 +26,42 @@ public class Aluguel implements Revisao {
     }
 
     public void iniciarAluguel(){
-        long dias = ChronoUnit.DAYS.between(getDataInicio(),getDataFim());
+        this.dias = ChronoUnit.DAYS.between(getDataInicio(),getDataFim());
         if (carro.isDisponivel()&& revisaoCompleta()){
         carro.alugar();
-        cliente.notificar("Carro: "+ carro.getModelo() + " Placa: " + carro.getPlaca() + " alugado com sucesso!!"
-                +"\nData de inicio: "+ getDataInicio() + "\nData de fim: "+ getDataFim() + "\nFuncionario responsável: "+ funcionario.getNome())
-                +"\nValor Total: R$ "+dias*carro.getValorDiaria() +" para " + dias + " dias";
+        cliente.notificar("Carro: " + this.carro.getModelo()
+                + " | Placa: " + this.carro.getPlaca()
+                + " alugado com sucesso!!"
+                + "\nData de início: " + getDataInicio()
+                + "\nData de fim: " + getDataFim()
+                + "\nFuncionário responsável: " + this.funcionario.getNome()
+                + "\nValor Total: R$ " + (this.dias * this.carro.getValorDiaria())
+                + " para " + this.dias + " dias");
     }else{
-        System.out.println("Erro ao estabelecer aluguel:\nCarro "+carro.getModelo() + " placa "+ carro.getPlaca() + " indisponivel!");
+        System.out.println("Erro ao estabelecer aluguel:\nCarro "+this.carro.getModelo() + " placa "+ this.carro.getPlaca() + " indisponivel!");
+    }
     }
 
+    public long getDias(){
+        return this.dias;
     }
+
+    public double getBonusSalarial(){
+        return this.bonusSalarial;
+    }
+    public void setBonusSalarial(){
+        this.bonusSalarial = getFuncionario().getSalario() + getFuncionario().getBonus()*getCarro().getValorDiaria()*getDias()/100;
+    }
+
     public void encerrarAluguel(){
-        carro.devolver();
-        cliente.notificar("Devolução conclída para o carro: "+carro.getModelo()+ " Placa: " + carro.getPlaca());
+        this.carro.devolver();
+        this.cliente.notificar("Devolução conclída para o carro: "+this.carro.getModelo()+ " Placa: " + this.carro.getPlaca()+ " Cliente: " + this.cliente.getNome());
         this.carro=null;
         this.cliente=null;
-
+        this.dias = 0;
+        this.bonusSalarial = 0;
+        this.dataInicio = null;
+        this.dataFim = null;
     }
     public Cliente getCliente() {
         return this.cliente;
