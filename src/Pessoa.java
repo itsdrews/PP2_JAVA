@@ -27,14 +27,27 @@ public abstract class Pessoa {
     }
 
     public void setNome(String nome) {
-        if (nome != null && !nome.isEmpty()) {
-            throw new IllegalArgumentException("Nome deve ser preenchida");
-        }
-        else{
-            this.nome = nome;
-            System.out.println("Nome setado com sucesso!");
+        try{
+            if(!validarNome(nome)) {
+                throw new IllegalArgumentException("Nome não pode ser vazio" );
+            }
+            else{
+                this.nome = nome;
+                System.out.println("Nome: " + nome+ " setado com sucesso!");
+            }
+        }catch(IllegalArgumentException e){
+            System.out.println("Erro: " + e.getMessage());
+
         }
 
+    }
+    private static boolean validarNome(String nome) {
+        if (nome != null && !nome.isEmpty()) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public int getIdade() {
@@ -47,63 +60,94 @@ public abstract class Pessoa {
                 throw new IllegalArgumentException("Idade mínima 18 anos e máxima 80 anos!");
             } else {
                 this.idade = idade;
-                System.out.println("Idade setado com sucesso!");
+                System.out.println("Idade " + idade +" setado com sucesso!");
             }
         } catch (IllegalArgumentException e) {
             System.out.println("Erro: " + e.getMessage());
         }
     }
 
-    public String getCpf() {
+    public String getCPF() {
         return this.cpf;
     }
-    public void setCpf(String cpf) {
+
+    public void setCPF(String cpf) {
+        try{
+
         if(!validarCPF(cpf)){
-            throw new IllegalArgumentException("CPF Inválido!!");
+            throw new IllegalArgumentException("CPF " + cpf+ " Inválido!!");
         }
         else{
             this.cpf = cpf;
-            System.out.println("CPF setado com sucesso!");
+            System.out.println("CPF " +cpf+ " setado com sucesso!");
+        }
+        }catch(IllegalArgumentException e){
+            System.out.println("Erro: " + e.getMessage());
         }
     }
 
     public String getEndereco() {
         return this.endereco;
     }
+
     public void setEndereco(String endereco) {
-        if(endereco != null && !endereco.isEmpty()) {
-            throw new IllegalArgumentException("Endereço deve ser preenchido!!");
-        }
-        else{
-            this.endereco = endereco;
-            System.out.println("Endereço setado com sucesso!");
+        try{
+            if(!validarEndereco(endereco)){
+                throw new IllegalArgumentException("Endereço não pode ser vazio!");
+
+            }else{
+                this.endereco = endereco;
+                System.out.println("Endereço "+ endereco +" setado com sucesso!");
+            }
+        }catch(IllegalArgumentException e){
+            System.out.println("Erro: " + e.getMessage());
         }
     }
+
+    private static boolean validarEndereco(String endereco) {
+        if (endereco != null && !endereco.isEmpty()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public String getTelefone() {
         return this.telefone;
     }
     public void setTelefone(String telefone) {
-        if (!validarTelefone(telefone)) {
-            throw new IllegalArgumentException("Telefone inválido!!");
+        try{
+            if (!validarTelefone(telefone)) {
+                throw new IllegalArgumentException("Telefone " + telefone +" inválido!!");
+            }
+            else{
+                this.telefone = telefone;
+                System.out.println("Telefone "+ telefone +" setado com sucesso!");
+            }
+
+        }catch (IllegalArgumentException e){
+            System.out.println("Erro: " + e.getMessage());
         }
-        else{
-            this.telefone = telefone;
-            System.out.println("Telefone setado com sucesso!");
-        }
+
     }
     public String getEmail() {
         return this.email;
     }
     public void setEmail(String email) {
-        if (!validarEmail(email)) {
-            throw new IllegalArgumentException("Email inválido!!");
-        }else{
-            this.email = email;
-            System.out.println("Email setado com sucesso!");
+        try{
+            if (!validarEmail(email)) {
+                throw new IllegalArgumentException("Email " +email +" inválido!!");
+            }else{
+                this.email = email;
+                System.out.println("Email " + email +" setado com sucesso!");
+            }
+        }catch(IllegalArgumentException e){
+            System.out.println("Erro: " + e.getMessage());
         }
 
     }
-    public static boolean validarEmail(String email){
+    private static boolean validarEmail(String email){
 
         if (email == null) return false;
         String regex = "^[\\w.-]+@[\\w-]+\\.[a-zA-Z]{2,}$";
@@ -116,13 +160,13 @@ public abstract class Pessoa {
         String regex = "^\\(?\\d{2}\\)?\\s?9?\\d{4}-?\\d{4}$";
         return telefone.matches(regex);
     }
-    public static boolean validaIdade(int idade){
+    private static boolean validaIdade(int idade){
         if(idade<=18 || idade>100){
             return false;
         }else{return true;}
     }
     // todo: Alterar validaçã do  CPF para modelo mais simples.
-    public static boolean validarCPF(String cpf) {
+    private static boolean validarCPF(String cpf) {
         // Remove pontuação
         cpf = cpf.replaceAll("[^\\d]", "");
 

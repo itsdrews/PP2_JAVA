@@ -57,7 +57,7 @@ public class Funcionario extends Pessoa{
     }
     @Override
     public String getInfo(){
-        return "Nome: " + getNome() + "\nIdade: " + getIdade() + "\nCPF: " + getCpf() + "\nCargo: " + getCargo();
+        return "Nome: " + getNome() + "\nIdade: " + getIdade() + "\nCPF: " + getCPF() + "\nCargo: " + getCargo();
 
     }
 }

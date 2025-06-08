@@ -10,9 +10,10 @@ public class Cliente extends Pessoa implements Notificacao{
         this.cnh = cnh;
 
     }
-    public String getCnh() {
+    public String getCNH() {
         return this.cnh;
     }
+
     public void setCNH(String cnh) {
        try{
            if(!validarCNH(cnh)){
@@ -20,7 +21,7 @@ public class Cliente extends Pessoa implements Notificacao{
            }
            else{
                this.cnh = cnh;
-               System.out.println("CNH atualizado com sucesso");
+               System.out.println("CNH "+ getCNH() +" atualizado com sucesso");
            }
 
        }catch(IllegalArgumentException e){
@@ -52,12 +53,12 @@ public class Cliente extends Pessoa implements Notificacao{
     }
     @Override
     public void notificar(String mensagem){
-        System.out.println("Notificação para "+ getNome()+ "CNH: " + getCnh()+ "\n"+mensagem);
+        System.out.println("Notificação para "+ getNome()+ "CNH: " + getCNH()+ "\n"+mensagem);
 
     }
 
     public String getInfo(){
-        return "Cliente: "+getNome()+ "\nCNH: "+getCnh();
+        return "Cliente: "+getNome()+ "\nCNH: "+getCNH();
     }
 
 }

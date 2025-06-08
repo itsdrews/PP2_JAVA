@@ -8,6 +8,7 @@ public class Carro implements Revisao {
     private double valorDiaria;
     private String avarias;
 
+    public Carro(){}
 
     public Carro(String modelo, String marca, String cor, String placa) {
         this.modelo = modelo;
@@ -20,15 +21,33 @@ public class Carro implements Revisao {
         public boolean isDisponivel(){
             return this.disponibilidade;
         }
+
         public String getModelo() {
             return this.modelo;
         }
+
         public void setModelo(String modelo) {
+            try{
+                if(validarModelo(modelo)){
+                    this.modelo = modelo;
+                    System.out.println("Modelo: " + modelo + " setado com suceso!");
+                }else{
+                    throw new IllegalArgumentException("Modelo "+ modelo +" inválido!");
+                }
+                    ;
+            }catch(IllegalArgumentException e){
+                System.out.println("Erro: "+e.getMessage());
+            }
+
+        }
+        private boolean validarModelo(String modelo){
             for(MarcasDeCarro marca: MarcasDeCarro.values()){
                 if(marca.validarModelo(modelo)){
                     this.modelo = modelo;
+                    return true;
                 }
             }
+            return false;
 
         }
         public String getMarca() {
@@ -38,22 +57,27 @@ public class Carro implements Revisao {
         public String getCor() {
             return this.cor;
         }
+
         public void setCor(String cor) {
             this.cor = cor;
         }
+
         public String getPlaca() {
             return this.placa;
         }
+
         public void setPlaca(String placa) {
             this.placa = placa;
         }
+
         public void setMarca(String marca) {
             try{
                 if(!validarMarca(marca)){
-                    throw new IllegalArgumentException("Marca não existe!");
+                    throw new IllegalArgumentException("Marca "+ marca +" não existe!");
                 }
                 else{
                     this.marca = marca;
+                    System.out.println("Marca: " + marca + " setado com suceso!");
                 }
             }catch(IllegalArgumentException e){
                 System.out.println("Erro: "+e.getMessage());
