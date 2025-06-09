@@ -1,10 +1,13 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
+
 public class Main {
 
     public static void main(String[] args) {
+        // Instanciando Locadora
+        Locadora locadora = new Locadora();
 
         // Instanciando carro e testando exceções
-
         // Testando a validação de modelo e marca segundo ENUM;
         System.out.println("Instanciando carro e validando campos: ");
         Carro carro1 = new Carro();
@@ -16,7 +19,7 @@ public class Main {
         carro1.setCor("PRETO");
         carro1.setPlaca("TAD6E00");
         carro1.setValorDiaria(280);
-        System.out.println("----------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
 
 
 
@@ -44,7 +47,7 @@ public class Main {
         // Setando CNH
         cliente1.setCNH("000000000"); // Erro
         cliente1.setCNH("07700897575");
-        System.out.println("----------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
 
 
         // Intanciando Funcionario que herda de pessoa todos os atributos e métodos de Pessoa
@@ -62,7 +65,7 @@ public class Main {
         funcionario1.setBonus();
         funcionario1.setSalario(3500);
         System.out.println("Bônus: "+ funcionario1.getBonus()+ "%");
-        System.out.println("----------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
 
 
         // Aluguel classe associativa entre Cliente, Carro e Funcionario // Erro
@@ -79,14 +82,25 @@ public class Main {
                 LocalDate.of(2025,12,12));
         aluguel2.setBonusSalarial(); // Bônus para o trabalhador
         System.out.println("Salário com bônus de 0.5% para "+ aluguel2.getFuncionario().getNome() + " : R$ " + aluguel2.getBonusSalarial());
+        locadora.addAluguel(aluguel2);
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+
+
+        // Lista de aluguéis
+        System.out.println("Lista de alugueis: ");
+        locadora.printAlugueis();
+        System.out.println("---------------------------------------------------------------------------------------------------------------");
+
 
         // Encerrando aluguel
         aluguel2.encerrarAluguel();
+        locadora.removeAluguel(aluguel2);
+        System.out.println("Lista de alugueis: ");
+        locadora.printAlugueis();
 
 
 
 
     }
-
 
 }

@@ -1,6 +1,7 @@
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+
 public class Aluguel implements Revisao {
 
     private Cliente cliente;
@@ -10,6 +11,7 @@ public class Aluguel implements Revisao {
     private LocalDate dataFim;
     private long dias;
     private double bonusSalarial = 0;
+    private String id;
 
     public Aluguel(){}
 
@@ -20,11 +22,19 @@ public class Aluguel implements Revisao {
         this.carro = carro;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
+        setId();
         iniciarAluguel();
 
 
-    }
 
+    }
+    public void setId(){
+        this.id = getCliente().getNome().substring(0,3) + String.valueOf((int)(Math.random() * 100) + 1) + getFuncionario().getNome().substring(0,3);
+
+    }
+    public String getId() {
+        return this.id;
+    }
     public void iniciarAluguel(){
         this.dias = ChronoUnit.DAYS.between(getDataInicio(),getDataFim());
         if (carro.isDisponivel()&& revisaoCompleta()){
@@ -35,8 +45,8 @@ public class Aluguel implements Revisao {
                 + "\nData de início: " + getDataInicio()
                 + "\nData de fim: " + getDataFim()
                 + "\nFuncionário responsável: " + this.funcionario.getNome()
-                + "\nValor Total: R$ " + (this.dias * this.carro.getValorDiaria())
-                + " para " + this.dias + " dias");
+                + "\nValor Total: R$ " + (this.dias * this.carro.getValorDiaria()) + " para " + this.dias + " dias"
+                + "\nIdentificador: " +getId());
     }else{
         System.out.println("Erro ao estabelecer aluguel:\nCarro "+this.carro.getModelo() + " placa "+ this.carro.getPlaca() + " indisponivel!");
     }
